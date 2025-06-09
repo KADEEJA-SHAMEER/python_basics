@@ -1,21 +1,21 @@
-def add(a,b):
-    return a+b
-def sub(a,b):
-    return a-b
-def mul(a,b):
-    return a*b
-def div(a,b):
-    if b==0:
+def add(c,d):
+    return c+d
+def sub(c,d):
+    return c-d
+def mul(c,d):
+    return c*d
+def div(c,d):
+    if d==0:
         print("division by zero not possible")
         return 0
     else:
-        return a/b
-def mod(a,b):
-    if b==0:
+        return c/d
+def mod(c,d):
+    if d==0:
         print("division by zero not possible")
         return 0
     else:
-        return a%b
+        return c%d
 a=int(input("enter number 1: "))
 b=int(input("enter number 2: "))
 op=input("enter an operator: ")
