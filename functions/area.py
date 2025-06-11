@@ -5,8 +5,8 @@ def rectangle(h,w):
 def square(s):
     return s*s
 
-choice=1
-while choice!=0:
+choice=True
+while choice:
     ch=int(input("1.Find the area of circle \n2.Find the area of rectangle \n3.Find area of square."
                  "\n0.Exit.\n Enter your choice: "))
     if ch==1:
@@ -23,7 +23,7 @@ while choice!=0:
         result=square(l)
         print(f"area of square with length {l} is : {result}")
     elif ch==0:
-        choice=0
+        choice=False
         print("exiting....")
     else:
         print("invalid entry")

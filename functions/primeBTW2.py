@@ -8,10 +8,8 @@ def prime(num):
     return True
 def check(m1,m2):
     prime_nums=[]
-    isprime=True
     for i in range(m1,m2+1):
-        isprime=prime(i)
-        if isprime:
+        if prime(i):
             prime_nums.append(i)
     return prime_nums
 n1=int(input("enter the starting number: "))
