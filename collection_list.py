@@ -20,16 +20,16 @@
 # my_tuple=tuple(my_list)
 # print(my_tuple[::-1])
 
-# my_set={"apple","kiwi","apple","orange"}
-# print(my_set)
-# # my_set[1]="orange"
-# my_set.add("banana")
-# my_set.remove("apple")
-# print(my_set)
+my_set={"apple","kiwi","apple","orange"}
+print(my_set)
+# my_set[1]="orange"
+my_set.add("banana")
+my_set.remove("apple")
+print(my_set)
 
-student = {"name": "Alice","age": 20,"grade": "A"}
-print(student["age"])
-student["course"]="bca"
-print(student)
-del student["age"]
-print(student)
+# student = {"name": "Alice","age": 20,"grade": "A"}
+# print(student["age"])
+# student["course"]="bca"
+# print(student)
+# del student["age"]
+# print(student)
