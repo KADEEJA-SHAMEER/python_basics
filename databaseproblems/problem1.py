@@ -31,3 +31,4 @@ my_cursor.execute("select * from student ")
 result=my_cursor.fetchone()
 print(result)
 # # pip install mysql-connector-python
+# mongodb://localhost:27017

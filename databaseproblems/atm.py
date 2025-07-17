@@ -14,6 +14,7 @@ def transaction_history(acc_num,trans_type,amount):
 my_cursor=mydb.cursor()
 my_cursor.execute("select acc_no from bank")
 acc_nos=my_cursor.fetchall()
+print(acc_nos)
 acc_nos = [row[0] for row in acc_nos]
 print(acc_nos)
 
@@ -104,6 +105,7 @@ while True:
     elif choice==0:
         print("exiting......")
         break
+
     else:
         print("Invalid choice")
 
