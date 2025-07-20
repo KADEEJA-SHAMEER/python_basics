@@ -4,52 +4,30 @@ from datetime import datetime
 
 my_client=pymongo.MongoClient("mongodb://localhost:27017")
 mydb=my_client["Hospital"]
-# mycol=mydb["department"]
-#
-# mydict=[ {"_id": "101", "name": "Cardiology"},
-#          {"_id": "102", "name": "Orthopedics"},
-#          {"_id": "103", "name": "Pediatrics"},
-#          {"_id": "105", "name": "Gynecology"},
-#          {"_id": "106", "name": "Dermatology"},
-#          {"_id": "110", "name": "Psychiatry"},
-#          {"_id": "111", "name": "ENT"},
-#          {"_id": "114", "name": "General Surgery"},
-#          {"_id": "115", "name": "Emergency Medicine"}]
-# x=mycol.insert_many(mydict)
-# mycol=mydb["doctor"]
-# doctors = [
-#     {"_id": "D001", "name": "Dr. Asha Menon",       "dept_id": "101"},  # Cardiology
-#     {"_id": "D002", "name": "Dr. Rajeev Thomas",    "dept_id": "102"},  # Orthopedics
-#     {"_id": "D003", "name": "Dr. Sneha Nair",       "dept_id": "103"},  # Pediatrics
-#     {"_id": "D004", "name": "Dr. Nisha Joseph",     "dept_id": "105"},  # Gynecology
-#     {"_id": "D005", "name": "Dr. Anil Varma",       "dept_id": "106"},  # Dermatology
-#     {"_id": "D006", "name": "Dr. Veena Subramaniam","dept_id": "110"},  # Psychiatry
-#     {"_id": "D007", "name": "Dr. Arjun Babu",       "dept_id": "111"},  # ENT
-#     {"_id": "D008", "name": "Dr. Mathew George",    "dept_id": "114"},  # General Surgery
-#     {"_id": "D009", "name": "Dr. Lakshmi Prasad",   "dept_id": "115"}   # Emergency Medicine
-# ]
-# x=mycol.insert_many(doctors)
+
+choice=input("Are you a new user or not (y/n): ")
+if choice=="y" or choice=="Y":
+    mycol = mydb["Registration"]
+    count = mycol.count_documents({})
+    name = input("enter your name: ")
+    age = int(input("Enter your age: "))
+    phone_no=int(input("Enter your phone number: "))
+    data = {"_id": count + 300, "name": name, "age": age,"phone_no":phone_no}
+    x=mycol.insert_one(data)
+    print(f"Your ID is: {count+300}. Yu need this id for further operations!!")
+    print("WELCOME!!!")
+
+elif choice=="n"or choice=="N":
+    print("WELCOME!!!")
+else:
+    print("invalid entry")
 while True:
-    choice=input("Are you a new user or not (y/n): ")
-    if choice=="y" or choice=="Y":
-        mycol = mydb["Registration"]
-        count = mycol.count_documents({})
-        name = input("enter your name: ")
-        age = int(input("Enter your age: "))
-        phone_no=int(input("Enter your phone number: "))
-        data = {"_id": count + 300, "name": name, "age": age,"phone_no":phone_no}
-        x=mycol.insert_one(data)
-        print(f"Your ID is: {count+300}. Yu need this id for further operations!!")
-        print("WELCOME!!!")
-    elif choice=="n"or choice=="N":
-        print("WELCOME!!!")
-    else:
-        print("invalid entry")
     ch=int(input("1.Book your Appointments.\n2.View your appointments.\n0.exit\nEnter your choice: "))
+
     if ch==1:
-        user_id=input("Enter your id: ")
-        mycol=mydb['Registration']
-        x=mycol.find_one({"_id":user_id})
+        user_id=int(input("Enter your id: "))
+        Id=mydb['Registration']
+        x=Id.find_one({"_id":user_id})
         if x:
             print("\n ....Available departments....")
             my_dep=mydb['department']
@@ -73,15 +51,19 @@ while True:
             book={"_id":booking+1,"user_id":user_id,"department":department_name,"doctor":doctor,"date":today}
             y=mycol.insert_one(book)
             print(".....Your booking is successfully completed!!!!....")
-    elif ch==0:
-        print("exiting........")
-        break
+
     elif ch==2:
-        user_id=input("enter your id: ")
+        user_id=int(input("enter your id: "))
         mycol = mydb['Registration']
         x = mycol.find_one({"_id": user_id})
         if x:
             book=mydb['Booking']
+            for b in book.find({'user_id':user_id}):
+                print(f"> ID:{b['user_id']} | {b['department']} |  {b['doctor']}  |  {b['date']}")
+
+    elif ch==0:
+        print("exiting........")
+        break
 
 
 
