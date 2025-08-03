@@ -1,7 +1,6 @@
 import pymongo
 from datetime import datetime
 
-
 my_client=pymongo.MongoClient("mongodb://localhost:27017")
 mydb=my_client["Hospital"]
 
